@@ -66,8 +66,14 @@
                                             <Image Source="/Images/Logo/Logo-small.png"/>
                                         </Button>
                                         <!--TITLE TEXT SET-->
-                                        <Viewbox Grid.Column="1" Margin="0">
-                                            <TextBlock Style="{StaticResource HeaderText}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title,FallbackValue='Welcome, Friend'}"/>
+                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="0">
+                                            <StackPanel>
+                                                <TextBlock FontFamily="{StaticResource LatoSemibold}" FontSize="{StaticResource FontSizeRegular}" Margin="0 0 0 -5">
+                                                    <Run  Text="W" Foreground="{StaticResource WordOrangeBrush}"/><Run Text="O" Foreground="{StaticResource WordBlueBrush}"/><Run Text="R" Foreground="{StaticResource WordRedBrush}"/><Run Text="D" Foreground="{StaticResource WordGreenBrush}"/>
+                                                </TextBlock>
+                                                <TextBlock Text="By Fasseto" Foreground="{StaticResource ForegroundFadeBrush}" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            
                                         </Viewbox>
                                         <!--WINDOW BUTTONS SET-->
                                         <StackPanel Orientation="Horizontal" Grid.Column="2">
@@ -78,32 +84,12 @@
 
                                     </Grid>
 
-                                    <!--DROPSHADOW FOR TITLEBAR-->
-                                    <Border Grid.Row="1" Height="6" BorderThickness="0 0.2 0 0">
-                                        <!--LINEAR GRADIENT TITLE BORDER-->
-                                        <Border.BorderBrush>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                <GradientStop Color="{StaticResource ForegroundWhite}" Offset="0.0"/>
-                                                <GradientStop Color="{StaticResource ForegroundBlack}" Offset="0.5"/>
-                                                <GradientStop Color="{StaticResource ForegroundWhite}" Offset="1.0"/>
-                                            </LinearGradientBrush>
-                                        </Border.BorderBrush>
-
-                                        <!--DROPSHADOW FOR TITLE BORDER-->
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="0.0"/>
-                                                <GradientStop Color="{StaticResource ForegroundWhite}" Offset="1.0"/>
-
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-
                                     <!--MAIN WINDOW CONTATNTS SET-->
-                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}">
-                                        <ContentPresenter Content="{TemplateBinding Content}">
+                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}" Background="{StaticResource WordBlueBrush}">
+                                        
+                                        <ContentPresenter Content="{TemplateBinding Content}"/>
 
-                                        </ContentPresenter>
+
                                     </Border>
 
                                 </Grid>
@@ -124,6 +110,8 @@
             />
     </WindowChrome.WindowChrome>
     <Grid Background="{StaticResource ForegroundWhiteBrush}">
-
+        <Frame x:Name="MainFrame" Content="{Binding CurrentPage,Converter={local:ApplicationPageValueConverter}}">
+            
+        </Frame>
     </Grid>
 </Window>

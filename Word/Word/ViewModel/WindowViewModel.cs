@@ -28,6 +28,8 @@ namespace Word
         /// Border corner Radius
         /// </summary>
         private int mWindowRadius = 10;
+
+        
         #endregion
 
         #region public Members
@@ -40,10 +42,12 @@ namespace Word
         /// </summary>
         public double WindowMinHeight { get; set; } = 400;
 
+        public bool Borderless { get { return (mWindow.WindowState == WindowState.Maximized); } }
+
         /// <summary>
         /// The size of the window border for size handles
         /// </summary>
-        public int ResizeBorder { get; set; } = 6;
+        public int ResizeBorder { get { return Borderless ? 0 : 6; } }
 
 
         /// <summary>
@@ -54,7 +58,7 @@ namespace Word
         /// <summary>
         /// The padding of the inner content of main window
         /// </summary>
-        public Thickness InnerContentPadding { get { return new Thickness(ResizeBorder); } }
+        public Thickness InnerContentPadding { get; set; } = new Thickness(0);
 
         /// <summary>
         /// The marin around the window for a drop shadow
@@ -107,6 +111,8 @@ namespace Word
         /// The HEight of the Title bar of window
         /// </summary>
         public GridLength TitleHeightGridLength { get { return new GridLength(TitleHeight + ResizeBorder); } }
+
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.login;
 
 
         #endregion
